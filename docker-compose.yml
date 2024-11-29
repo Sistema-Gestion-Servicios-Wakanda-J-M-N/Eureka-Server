@@ -1,13 +1,18 @@
-version: '3.9'
 services:
   eureka-server:
-    build: .
+    build:
+      context: ./  # Asumiendo que el Dockerfile está en la raíz de este repositorio
     ports:
       - "8761:8761"
     container_name: eureka-server
     networks:
-      - eureka-network
+      - backend-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=default  # Si usas algún perfil de configuración
+      - eureka.server.enable-self-preservation=false
+      - eureka.server.eviction-interval-timer-in-ms=5000
+      - eureka.server.renewal-strategy=true
 
 networks:
-  eureka-network:
+  backend-network:
     driver: bridge
