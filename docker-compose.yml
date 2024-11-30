@@ -1,13 +1,4 @@
 services:
-  mysql:
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=P4ssword!
-      - MYSQL_DATABASE=Backend_Wakanda_Salud
-    ports:
-      - "3306:3306"
-    networks:
-      - backend-network
 
   eureka-server:
     build:
@@ -22,6 +13,16 @@ services:
       - eureka.server.enable-self-preservation=false
       - eureka.server.eviction-interval-timer-in-ms=5000
       - eureka.server.renewal-strategy=true
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Monta la configuración de Prometheus
+    ports:
+      - "9090:9090"  # Expón el puerto 9090
+    networks:
+      - backend-network
 
 networks:
   backend-network:
