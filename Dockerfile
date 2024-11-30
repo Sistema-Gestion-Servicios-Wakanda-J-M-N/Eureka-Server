@@ -20,7 +20,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copiamos el archivo JAR generado desde el contenedor de construcción
-COPY --from=build /app/target/eureka-server-0.0.1-SNAPSHOT.jar /app/eureka-server.jar
+COPY --from=build /app/target/Eureka-Server-0.0.1-SNAPSHOT.jar /app/eureka-server.jar
 
 # Exponemos el puerto 8761 para Eureka
 EXPOSE 8761
