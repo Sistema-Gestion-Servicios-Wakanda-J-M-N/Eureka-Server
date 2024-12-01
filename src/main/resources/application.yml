@@ -9,16 +9,13 @@ eureka:
   server:
     enable-self-preservation: false  # Disable self-preservation, useful for quick health checks during testing or debugging
     eviction-interval-timer-in-ms: 5000  # The interval for checking the evicted instances
-    renewal-strategy: true  # Defines the renewal strategy for the instances
+
 
   client:
     register-with-eureka: false  # Do not register this Eureka Server instance with itself
     fetch-registry: false  # Don't try to fetch registry from Eureka, as it's self-contained
     service-url:
-        defaultZone: http://localhost:8761/eureka/  # URL for the Eureka Server
-
-server:
-  port: 8761  # Eureka Server listens on port 8761
+        defaultZone: http://localhost:8762/  # URL for the Eureka Server
 
 management:
   endpoints:
@@ -26,7 +23,8 @@ management:
       exposure:
         include: "*"  # Expose all actuator endpoints (optional)
 
-
+server:
+  port: 8762
 
 metrics:
    export:

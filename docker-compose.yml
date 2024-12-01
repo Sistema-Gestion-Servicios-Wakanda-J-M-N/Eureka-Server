@@ -1,10 +1,9 @@
 services:
-
   eureka-server:
     build:
       context: ./  # Asumiendo que el Dockerfile está en la raíz de este repositorio
     ports:
-      - "8761:8761"
+      - "8761:8761"  # Exponiendo el puerto 8761
     container_name: eureka-server
     networks:
       - backend-network
@@ -13,6 +12,7 @@ services:
       - eureka.server.enable-self-preservation=false
       - eureka.server.eviction-interval-timer-in-ms=5000
       - eureka.server.renewal-strategy=true
+    restart: always
 
   prometheus:
     image: prom/prometheus
@@ -23,7 +23,17 @@ services:
       - "9090:9090"  # Expón el puerto 9090
     networks:
       - backend-network
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"  # Expón el puerto 3000
+    networks:
+      - backend-network
+    restart: always
 
 networks:
   backend-network:
-    driver: bridge
+    driver: bridge  # Asegúrate de que la red esté configurada correctamente
