@@ -1,4 +1,4 @@
-# Usamos una imagen base de OpenJDK
+# Etapa de construcción
 FROM openjdk:17-jdk-slim AS build
 
 # Instalamos Maven
@@ -7,23 +7,23 @@ RUN apt-get update && apt-get install -y maven
 # Establecemos el directorio de trabajo
 WORKDIR /app
 
-# Copiamos el proyecto a la imagen
+# Copiamos el resto del proyecto
 COPY . /app
 
-# Ejecutamos Maven para empaquetar el proyecto y generar el .jar
+# Ejecutamos Maven para construir el proyecto y generar el JAR
 RUN mvn clean package -DskipTests
 
-# Utilizamos una imagen más liviana para el contenedor final
+# Imagen final liviana
 FROM openjdk:17-jdk-slim
 
 # Establecemos el directorio de trabajo
 WORKDIR /app
 
-# Copiamos el archivo JAR generado desde el contenedor de construcción
+# Copiamos el archivo JAR generado desde la etapa de construcción
 COPY --from=build /app/target/Eureka-Server-0.0.1-SNAPSHOT.jar /app/eureka-server.jar
 
-# Exponemos el puerto 8761 para Eureka
+# Exponemos el puerto en el que el servidor escuchará
 EXPOSE 8761
 
-# Definimos el comando para iniciar Eureka
+# Comando para iniciar Eureka
 ENTRYPOINT ["java", "-jar", "/app/eureka-server.jar"]
