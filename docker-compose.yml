@@ -3,7 +3,7 @@ services:
     build:
       context: ./  # Asumiendo que el Dockerfile está en la raíz de este repositorio
     ports:
-      - "8761:8761"  # Exponiendo el puerto 8761
+      - "8762:8762"  # Exponiendo el puerto 8762
     container_name: eureka-server
     networks:
       - backend-network
@@ -36,4 +36,4 @@ services:
 
 networks:
   backend-network:
-    driver: bridge  # Asegúrate de que la red esté configurada correctamente
+    external: true
