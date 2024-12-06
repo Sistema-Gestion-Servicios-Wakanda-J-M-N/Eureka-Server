@@ -1,38 +1,43 @@
 spring:
+
   application:
-    name: eureka-server
-  cloud:
-    discovery:
-      enabled: true
+    name: backend-wakanda-salud
 
-eureka:
-  server:
-    enable-self-preservation: false  # Disable self-preservation, useful for quick health checks during testing or debugging
-    eviction-interval-timer-in-ms: 5000  # The interval for checking the evicted instances
+server:
+  port: 8761
 
+jwt:
+  secret: securesecretkey
 
-  client:
-    register-with-eureka: false  # Do not register this Eureka Server instance with itself
-    fetch-registry: false  # Don't try to fetch registry from Eureka, as it's self-contained
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka/  # URL to access the Eureka Server
+error:
+  handling:
+    http-status-in-json-response: true
+    exception-logging: NO_LOGGING
+    full-stacktrace-http-statuses: 5xx
+    log-levels:
+      5xx: ERROR
 
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.hibernate.SQL: DEBUG
+    com.myproyect.springboot: DEBUG
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"  # Expose all actuator endpoints (optional)
+        include: "*"
 
-server:
-  port: 8761
-
-logging:
-  level:
-    com.netflix.eureka: DEBUG
-    org.springframework.cloud.netflix.eureka: DEBUG
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}  # Valor dinámico basado en la variable de entorno
+    register-with-eureka: false  # Desactiva el auto-registro en sí mismo
+    fetch-registry: false        # Desactiva el intento de obtener el registro de otras instancias
 
 metrics:
-   export:
+  export:
     prometheus:
-      enabled: true  # Activa el soporte para Prometheus
+      enabled: true
