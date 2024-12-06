@@ -23,11 +23,42 @@ public class EurekaServerApplication {
 
 	private static void runAllTasks() {
 		runMavenCleanInstall();
+		if (!isDockerNetworkExists("backend-network")) {
+			createDockerNetwork("backend-network");
+		}
 		if (!isDockerImageExists("eureka-server")) {
 			runDockerComposeBuild();
 		}
 		if (!isDockerContainerRunning("eureka-server")) {
 			runDockerComposeUp();
+		}
+	}
+
+	private static boolean isDockerNetworkExists(String networkName) {
+		ProcessBuilder processBuilder = new ProcessBuilder();
+		processBuilder.command("docker", "network", "ls", "-q", "--filter", "name=" + networkName);
+		try {
+			Process process = processBuilder.start();
+			int exitCode = process.waitFor();
+			return exitCode == 0 && process.getInputStream().read() != -1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private static void createDockerNetwork(String networkName) {
+		ProcessBuilder processBuilder = new ProcessBuilder();
+		processBuilder.command("docker", "network", "create", networkName);
+		processBuilder.inheritIO();
+		try {
+			Process process = processBuilder.start();
+			int exitCode = process.waitFor();
+			if (exitCode != 0) {
+				System.err.println("Error: docker network create failed with exit code " + exitCode);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -50,7 +81,7 @@ public class EurekaServerApplication {
 
 	private static void runDockerComposeBuild() {
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.command("docker-compose", "-f", "C:/Users/lopee/Documents/GitHub/Eureka-Server/docker-compose.yml", "build");
+		processBuilder.command("docker-compose", "-f", "C:/Users/Marcosss/Documents/GitHub/Eureka-Server/docker-compose.yml", "build");
 		processBuilder.inheritIO();
 
 		try {
@@ -66,7 +97,7 @@ public class EurekaServerApplication {
 
 	private static void runDockerComposeUp() {
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.command("docker-compose", "-f", "C:/Users/lopee/Documents/GitHub/Eureka-Server/docker-compose.yml", "up", "-d");
+		processBuilder.command("docker-compose", "-f", "C:/Users/Marcosss/Documents/GitHub/Eureka-Server/docker-compose.yml", "up", "-d");
 		processBuilder.inheritIO();
 
 		try {
