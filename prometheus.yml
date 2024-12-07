@@ -15,3 +15,10 @@ scrape_configs:
       - targets: ["backend-wakanda-salud:8090"]  # Solo el hostname y el puerto
         labels:
           service: "backend-wakanda-salud"
+
+  - job_name: "backend-wakanda-agua"
+    metrics_path: "/actuator/prometheus"  # Especifica el path de las métricas
+    static_configs:
+      - targets: [ "backend-wakanda-agua:8095" ]  # Solo el hostname y el puerto
+        labels:
+          service: "backend-wakanda-agua"

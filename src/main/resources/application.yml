@@ -1,7 +1,7 @@
 spring:
 
   application:
-    name: backend-wakanda-salud
+    name: eureka-servidor
 
 server:
   port: 8761
