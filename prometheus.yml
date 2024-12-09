@@ -29,3 +29,10 @@ scrape_configs:
       - targets: [ "backend-wakanda-transporte-movilidad:8097" ]  # Solo el hostname y el puerto
         labels:
           service: "backend-wakanda-transporte-movilidad"
+
+  - job_name: "backend-wakanda-cultura-ocio-turismo"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: [ "backend-wakanda-cultura-ocio-turismo:8096" ]
+        labels:
+          service: "backend-wakanda-cultura-ocio-turismo"
