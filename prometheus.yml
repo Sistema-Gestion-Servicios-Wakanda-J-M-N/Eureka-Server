@@ -3,36 +3,43 @@ global:
 
 scrape_configs:
   - job_name: "eureka-server"
-    metrics_path: "/actuator/prometheus"  # Especifica el path de las métricas
+    metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["eureka-server:8761"]  # Solo el hostname y el puerto
+      - targets: ["eureka-server:8761"]
         labels:
           service: "eureka-server"
 
   - job_name: "backend-wakanda-salud"
-    metrics_path: "/actuator/prometheus"  # Especifica el path de las métricas
+    metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-salud:8090"]  # Solo el hostname y el puerto
+      - targets: ["backend-wakanda-salud:8090"]
         labels:
           service: "backend-wakanda-salud"
 
   - job_name: "backend-wakanda-agua"
-    metrics_path: "/actuator/prometheus"  # Especifica el path de las métricas
+    metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: [ "backend-wakanda-agua:8095" ]  # Solo el hostname y el puerto
+      - targets: ["backend-wakanda-agua:8095"]
         labels:
           service: "backend-wakanda-agua"
 
   - job_name: "backend-wakanda-transporte-movilidad"
-    metrics_path: "/actuator/prometheus"  # Especifica el path de las métricas
+    metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: [ "backend-wakanda-transporte-movilidad:8097" ]  # Solo el hostname y el puerto
+      - targets: ["backend-wakanda-transporte-movilidad:8097"]
         labels:
           service: "backend-wakanda-transporte-movilidad"
 
   - job_name: "backend-wakanda-cultura-ocio-turismo"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: [ "backend-wakanda-cultura-ocio-turismo:8096" ]
+      - targets: ["backend-wakanda-cultura-ocio-turismo:8096"]
         labels:
           service: "backend-wakanda-cultura-ocio-turismo"
+
+  - job_name: "backend-wakanda-residuos"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["backend-wakanda-residuos:8093"]
+        labels:
+          service: "backend-wakanda-residuos"
