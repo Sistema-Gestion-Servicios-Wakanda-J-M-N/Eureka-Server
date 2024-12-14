@@ -43,3 +43,17 @@ scrape_configs:
       - targets: ["backend-wakanda-residuos:8093"]
         labels:
           service: "backend-wakanda-residuos"
+
+  - job_name: "backend-wakanda-seguridad"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["backend-wakanda-seguridad:8091"]
+        labels:
+          service: "backend-wakanda-seguridad"
+
+  - job_name: "backend-wakanda-trafico"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["backend-wakanda-trafico:8092"]
+        labels:
+          service: "backend-wakanda-trafico"
