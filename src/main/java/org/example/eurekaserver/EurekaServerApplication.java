@@ -81,7 +81,8 @@ public class EurekaServerApplication {
 
 	private static void runDockerComposeBuild() {
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.command("docker-compose", "-f", "C:/Users/lopee/Documents/GitHub/Eureka-Server/docker-compose.yml", "build");
+		// processBuilder.command("docker-compose", "-f", "C:/Users/Marcosss/Documents/GitHub/Eureka-Server/docker-compose.yml", "build");
+		processBuilder.command("docker-compose", "-f", "docker-compose.yml", "build");
 		processBuilder.inheritIO();
 
 		try {
@@ -97,7 +98,8 @@ public class EurekaServerApplication {
 
 	private static void runDockerComposeUp() {
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.command("docker-compose", "-f", "/Users/lopee/Documents/GitHub/Eureka-Server/docker-compose.yml", "up", "-d");
+		processBuilder.command("docker-compose", "-f", "docker-compose.yml", "up", "-d");
+		// processBuilder.command("docker-compose", "-f", "/Users/Marcosss/Documents/GitHub/Eureka-Server/docker-compose.yml", "up", "-d");
 		processBuilder.inheritIO();
 
 		try {
