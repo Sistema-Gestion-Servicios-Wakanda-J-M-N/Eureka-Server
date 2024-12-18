@@ -57,3 +57,10 @@ scrape_configs:
       - targets: ["backend-wakanda-trafico:8082"]
         labels:
           service: "backend-wakanda-trafico"
+
+  - job_name: "backend-wakanda-energia-sostenible-eficiente"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: [ "backend-wakanda-energia-sostenible-eficiente:8088" ]
+        labels:
+          service: "backend-wakanda-energia-sostenible-eficiente"
