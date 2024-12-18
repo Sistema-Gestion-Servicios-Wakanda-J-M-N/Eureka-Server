@@ -64,3 +64,10 @@ scrape_configs:
       - targets: [ "backend-wakanda-energia-sostenible-eficiente:8088" ]
         labels:
           service: "backend-wakanda-energia-sostenible-eficiente"
+
+  - job_name: "backend-wakanda-gobierno"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: [ "backend-wakanda-gobierno:8084" ]
+        labels:
+          service: "backend-wakanda-gobierno"
