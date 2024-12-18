@@ -71,3 +71,10 @@ scrape_configs:
       - targets: [ "backend-wakanda-gobierno:8084" ]
         labels:
           service: "backend-wakanda-gobierno"
+
+  - job_name: "backend-wakanda-conectividad-redes"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: [ "backend-wakanda-conectividad-redes:8102" ]
+        labels:
+          service: "backend-wakanda-conectividad-redes"
