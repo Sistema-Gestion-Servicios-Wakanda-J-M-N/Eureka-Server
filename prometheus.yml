@@ -12,48 +12,48 @@ scrape_configs:
   - job_name: "backend-wakanda-salud"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-salud:8090"]
+      - targets: ["backend-wakanda-salud:8080"]
         labels:
           service: "backend-wakanda-salud"
 
   - job_name: "backend-wakanda-agua"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-agua:8095"]
+      - targets: ["backend-wakanda-agua:8085"]
         labels:
           service: "backend-wakanda-agua"
 
   - job_name: "backend-wakanda-transporte-movilidad"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-transporte-movilidad:8097"]
+      - targets: ["backend-wakanda-transporte-movilidad:8087"]
         labels:
           service: "backend-wakanda-transporte-movilidad"
 
   - job_name: "backend-wakanda-cultura-ocio-turismo"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-cultura-ocio-turismo:8096"]
+      - targets: ["backend-wakanda-cultura-ocio-turismo:8086"]
         labels:
           service: "backend-wakanda-cultura-ocio-turismo"
 
   - job_name: "backend-wakanda-residuos"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-residuos:8093"]
+      - targets: ["backend-wakanda-residuos:8083"]
         labels:
           service: "backend-wakanda-residuos"
 
   - job_name: "backend-wakanda-seguridad"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-seguridad:8091"]
+      - targets: ["backend-wakanda-seguridad:8081"]
         labels:
           service: "backend-wakanda-seguridad"
 
   - job_name: "backend-wakanda-trafico"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["backend-wakanda-trafico:8092"]
+      - targets: ["backend-wakanda-trafico:8082"]
         labels:
           service: "backend-wakanda-trafico"
