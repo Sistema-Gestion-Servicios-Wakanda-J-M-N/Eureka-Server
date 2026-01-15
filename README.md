@@ -214,6 +214,4 @@ scrape_configs:
 
 ---
 
-¡Disfruta de un descubrimiento de servicios y monitorización sin esfuerzo! 🚀
-
 
